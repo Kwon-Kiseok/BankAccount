@@ -5,9 +5,9 @@
 
 bool IsFindAccount(Account* accounts, int inputNo, int* idx)
 {
-	for (int i = 0; accounts[i].no != 0; ++i)
+	for (int i = 0; accounts[i].GetNo() != 0; ++i)
 	{
-		if (accounts[i].no == inputNo)
+		if (accounts[i].GetNo() == inputNo)
 		{
 			if (idx != nullptr)
 				*idx = i;
@@ -18,7 +18,7 @@ bool IsFindAccount(Account* accounts, int inputNo, int* idx)
 	return false;
 }
 
-void CreateAccount(Account* accounts, int* idx)
+void Account::CreateAccount(Account* accounts[], int* idx)
 {
 	int no = 0;
 
@@ -26,76 +26,78 @@ void CreateAccount(Account* accounts, int* idx)
 	std::cout << "계좌번호: ";
 	std::cin >> no;
 
-	if (IsFindAccount(accounts, no, nullptr))
+	if (IsFindAccount(*accounts, no, nullptr))
 	{
 		std::cout << "입력된 계좌번호는 사용할 수 없습니다." << std::endl;
 		return;
 	}
 	else
 	{
-		accounts[*idx].no = no;
+		char name[MAX_CUSTOMER_NAME];
+		int money = 0;
 		std::cout << "이름: ";
-		std::cin >> accounts[*idx].name;
+		std::cin >> name;
 		std::cout << "입금액: ";
-		std::cin >> accounts[*idx].money;
+		std::cin >> money;
 
+		accounts[*idx] = new Account(no, money, name);
 		(*idx)++;
 	}
 }
 
-void Deposit(Account* accounts)
+void Account::Deposit(Account* accounts)
 {
-	int no = 0, money = 0;
+	int mNo = 0, mMoney = 0;
 	int idx = 0;
 
 	std::cout << "[입 금]" << std::endl;
 	std::cout << "계좌번호: ";
-	std::cin >> no;
+	std::cin >> mNo;
 
-	if (!IsFindAccount(accounts, no, &idx))
+	if (!IsFindAccount(accounts, mNo, &idx))
 	{
 		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
 		return;
 	}
 
 	std::cout << "입금액: ";
-	std::cin >> money;
-	accounts[idx].money += money;
+	std::cin >> mMoney;
+	accounts[idx].mMoney += mMoney;
 	std::cout << "입금완료" << std::endl;
 }
 
-void Withdraw(Account* accounts)
+void Account::Withdraw(Account* accounts)
 {
-	int no = 0, money = 0;
+	int mNo = 0, mMoney = 0;
 	int idx = 0;
 
 	std::cout << "[출 금]" << std::endl;
 	std::cout << "계좌번호: ";
-	std::cin >> no;
+	std::cin >> mNo;
 
-	if (!IsFindAccount(accounts, no, &idx))
+	if (!IsFindAccount(accounts, mNo, &idx))
 	{
 		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
 		return;
 	}
 
 	std::cout << "출금액: ";
-	std::cin >> money;
-	accounts[idx].money -= money;
+	std::cin >> mMoney;
+	accounts[idx].mMoney -= mMoney;
 	std::cout << "출금완료" << std::endl;
 }
 
-void ViewInfo(Account* accounts)
+void Account::ViewInfo(Account* accounts[])
 {
-	for (int i = 0; accounts[i].no != NULL; ++i)
+	for (int i = 0; accounts[i]->GetNo() != 0; ++i)
 	{
-		std::cout << "계좌번호: " << accounts[i].no << std::endl;
-		std::cout << "이 름: " << accounts[i].name << std::endl;
-		std::cout << "잔 액: " << accounts[i].money << std::endl;
+		std::cout << "계좌번호: " << accounts[i]->GetNo() << std::endl;
+		std::cout << "이 름: " << accounts[i]->GetName() << std::endl;
+		std::cout << "잔 액: " << accounts[i]->GetMoney() << std::endl;
 	}
 }
 
-void Save(Account* accounts, int* idx)
+void Account::Save(Account* accounts, int* idx)
 {
 	int i = 0;
 	FILE* fp;
@@ -112,7 +114,7 @@ void Save(Account* accounts, int* idx)
 	fclose(fp);
 }
 
-void Load(Account* accounts, int* idx)
+void Account::Load(Account* accounts, int* idx)
 {
 	int i = 0;
 	FILE* fp;

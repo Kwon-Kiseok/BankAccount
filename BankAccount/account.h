@@ -3,16 +3,37 @@
 #define MAX_ACCOUNTS_SIZE 20
 #define MAX_CUSTOMER_NAME 30
 
-typedef struct
+class Account
 {
-	int no;		//계좌번호
-	int money;	//잔액
-	char name[MAX_CUSTOMER_NAME];	//고객이름
-}Account;
+private:
+	int mNo;
+	int mMoney;
+	char* mName;
+public:
+	Account() : mNo(0), mMoney(0), mName(NULL) {}
+	Account(int no, int money, const char* name) : mNo(no), mMoney(money)
+	{
+		mName = new char[strlen(name) + 1];
+		strcpy_s(mName, (strlen(name) + 1), name);
+	}
+	Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney)
+	{
+		mName = new char[strlen(copy.mName) + 1];
+		strcpy_s(mName, (strlen(copy.mName) + 1), copy.mName);
+	}
+	~Account()
+	{
+		delete[] mName;
+	}
+	
+	int GetNo() const { return mNo; } 
+	int GetMoney() const { return mMoney; } 
+	char* GetName() const { return mName; }
 
-void CreateAccount(Account* accounts, int* idx);	// 계좌생성
-void Deposit(Account* accounts);		// 입금
-void Withdraw(Account* accounts);		// 출금
-void ViewInfo(Account* accounts);		// 조회
-void Save(Account* accounts, int* idx);			// 저장
-void Load(Account* accounts, int* idx);		// 로드
+	void CreateAccount(Account* accounts[], int* idx);
+	void Deposit(Account* accounts);
+	void Withdraw(Account* accounts);
+	void ViewInfo(Account* accounts[]);
+	void Save(Account* accounts, int* idx);
+	void Load(Account* accounts, int* idx);
+};

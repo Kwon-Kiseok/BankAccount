@@ -2,20 +2,20 @@
 #include "Data.h"
 #include "account.h"
 
-void update(Account* accounts, int* idx);
-void SelectMenu(Account* accounts, int* idx, EInput input);
+void update(Account* accounts[], int* idx);
+void SelectMenu(Account* accounts[], int* idx, EInput input);
 void Print();
 EInput Input();
 
 int main()
 {
-	static Account* accounts = new Account[MAX_ACCOUNTS_SIZE]{};
+	Account* accounts = new Account[MAX_ACCOUNTS_SIZE]{};
 	static int idx = 0;
-	update(accounts, &idx);
+	update(&accounts, &idx);
 	return 0;
 }
 
-void update(Account* accounts, int* idx)
+void update(Account* accounts[], int* idx)
 {
 	while (1)
 	{
@@ -24,27 +24,27 @@ void update(Account* accounts, int* idx)
 	}
 }
 
-void SelectMenu(Account* accounts, int* idx, EInput input)
+void SelectMenu(Account* accounts[], int* idx, EInput input)
 {
 	switch (input)
 	{
 	case EInput::CREATE_ACCOUNT:
-		CreateAccount(accounts, idx);
+		accounts[*idx]->CreateAccount(accounts, idx);
 		break;
 	case EInput::DEPOSIT:
-		Deposit(accounts);
+		//accounts[*idx]->Deposit(accounts);
 		break;
 	case EInput::WITHDRAW:
-		Withdraw(accounts);
+		//accounts->Withdraw(accounts);
 		break;
 	case EInput::VIEWINFO:
-		ViewInfo(accounts);
+		accounts[*idx]->ViewInfo(accounts);
 		break;
 	case EInput::SAVE:
-		Save(accounts, idx);
+		//accounts->Save(accounts, idx);
 		break;
 	case EInput::LOAD:
-		Load(accounts, idx);
+		//accounts->Load(accounts, idx);
 		break;
 	case EInput::EXIT:
 	{
