@@ -20,6 +20,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		char name[MAX_CUSTOMER_NAME];
 		int money;
 		int type;
+		Account* newAccount = nullptr;
 
 		std::cout << "[계좌종류선택]" << std::endl;
 		std::cout << "1. 보통예금계좌" << std::endl;
@@ -29,9 +30,11 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		switch ((ACCOUNT_TYPE)type)
 		{
 		case ACCOUNT_TYPE::NORMAL_ACCOUNT:
+		{
 			//보통예금계좌 개설
 			std::cout << "[보통예금계좌 개설]" << std::endl;
 			break;
+		}
 		case ACCOUNT_TYPE::HIGHCREDIT_ACCOUNT:
 			//신용신뢰계좌 개설
 			std::cout << "[신용신뢰계좌 개설]" << std::endl;
@@ -55,9 +58,21 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cin >> name;
 		std::cout << "입금액: ";
 		std::cin >> money;
+		
+		if ((ACCOUNT_TYPE)type == ACCOUNT_TYPE::NORMAL_ACCOUNT)
+		{
+			int ratio;
+			std::cout << "이자율: ";
+			std::cin >> ratio;
+			newAccount = new NormalAccount(no, money, name, ratio);
+		}
+		else if ((ACCOUNT_TYPE)type == ACCOUNT_TYPE::HIGHCREDIT_ACCOUNT)
+		{
+
+		}
 		std::cout << std::endl;
 
-		handler->CreateAccount(new Account(no, money, name));
+		handler->CreateAccount(newAccount);
 	}
 	break;
 	case EInput::DEPOSIT:

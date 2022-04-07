@@ -1,6 +1,8 @@
 #pragma once
 #include "Data.h"
 #include "account.h"
+#include "NormalAccount.h"
+#include "HighCreditAccount.h"
 
 class AccountHandler
 {

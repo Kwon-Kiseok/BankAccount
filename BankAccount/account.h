@@ -16,7 +16,6 @@ private:
 	int mNo;
 	int mMoney;
 	char* mName;
-	// Á¾·ù
 public:
 	Account() : mNo(0), mMoney(0), mName(NULL) {}
 	Account(int no, int money, const char* name) : mNo(no), mMoney(money)
@@ -34,19 +33,11 @@ public:
 		delete[] mName;
 	}
 
-	void Deposit(int money);
-	int Withdraw(int money);
-	void ViewInfo() const;
+	virtual void Deposit(int money);
+	virtual int Withdraw(int money);
+	virtual void ViewInfo() const;
 	
-	int GetNo() const { return mNo; } 
-	int GetMoney() const { return mMoney; } 
-	char* GetName() const { return mName; }
-
-	void SetNo(int no) { mNo = no; }
-	void SetMoney(int money) { mMoney = money; }
-	void SetName(char* name)
-	{
-		mName = new char[strlen(name) + 1];
-		strcpy_s(mName, (strlen(name) + 1), name);
-	}
+	virtual int GetNo() const { return mNo; } 
+	virtual int GetMoney() const { return mMoney; } 
+	virtual char* GetName() const { return mName; }
 };
