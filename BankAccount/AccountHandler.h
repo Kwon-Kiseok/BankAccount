@@ -20,11 +20,14 @@ public:
 	void PrintMenu();
 	EInput SelectMenu();
 
+	int GetTotal() const { return total; };
+	Account* GetAccount(int i) const { return accounts[i]; };
+
 	bool CheckOverlap(int inputNo);
 	void CreateAccount(Account* account);
-	void DepositMoney();
-	void WithdrawMoney();
-	void ViewInfoAccounts() const;
+	void DepositMoney(int idx, int money);
+	void WithdrawMoney(int idx, int money);
+	void ViewInfoAccounts(int idx) const;
 	void SaveInfo();
 	void LoadInfo();
 };

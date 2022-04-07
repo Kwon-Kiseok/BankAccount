@@ -36,6 +36,9 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 			//신용신뢰계좌 개설
 			std::cout << "[신용신뢰계좌 개설]" << std::endl;
 			break;
+		default:
+			std::cout << "잘못된 입력입니다." << std::endl;
+			return;
 		}
 
 		std::cout << "[계좌개설]" << std::endl;
@@ -58,13 +61,62 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 	}
 	break;
 	case EInput::DEPOSIT:
-		handler->DepositMoney();
+	{
+		int money;
+		int no;
+		std::cout << "[입 금]" << std::endl;
+		std::cout << "계좌번호: ";
+		std::cin >> no;
+
+		for (int i = 0; i < handler->GetTotal(); ++i)
+		{
+			if (handler->GetAccount(i)->GetNo() == no)
+			{
+				std::cout << "입금액: ";
+				std::cin >> money;
+				handler->DepositMoney(i, money);
+				std::cout << "입금완료" << std::endl;
+				return;
+			}
+		}
+		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+	}
 		break;
 	case EInput::WITHDRAW:
-		handler->WithdrawMoney();
+	{
+		int no = 0, money = 0;
+
+		std::cout << "[출 금]" << std::endl;
+		std::cout << "계좌번호: ";
+		std::cin >> no;
+
+		for (int i = 0; i < handler->GetTotal(); ++i)
+		{
+			if (handler->GetAccount(i)->GetNo() == no)
+			{
+				std::cout << "출금액: ";
+				std::cin >> money;
+				handler->WithdrawMoney(i, money);
+				std::cout << "출금완료" << std::endl;
+				return;
+			}
+		}
+		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+	}
 		break;
 	case EInput::VIEWINFO:
-		handler->ViewInfoAccounts();
+	{
+		if (handler->GetTotal() == 0)
+		{
+			std::cout << "저장된 계좌정보가 존재하지 않습니다." << std::endl;
+			return;
+		}
+
+		for (int i = 0; i < handler->GetTotal(); ++i)
+		{
+			handler->ViewInfoAccounts(i);
+		}
+	}
 		break;
 	case EInput::SAVE:
 		//SaveInfo(accounts, idx);

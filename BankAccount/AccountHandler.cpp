@@ -30,26 +30,9 @@ void AccountHandler::PrintMenu()
 	std::cout << "7. 종 료" << std::endl;
 }
 
-void AccountHandler::DepositMoney()
+void AccountHandler::DepositMoney(int idx, int money)
 {
-	int money;
-	int no;
-	std::cout << "[입 금]" << std::endl;
-	std::cout << "계좌번호: ";
-	std::cin >> no;
-
-	for (int i = 0; i < total; ++i)
-	{
-		if (accounts[i]->GetNo() == no)
-		{
-			std::cout << "입금액: ";
-			std::cin >> money;
-			accounts[i]->Deposit(money);
-			std::cout << "입금완료" << std::endl;
-			return;
-		}
-	}
-	std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+	accounts[idx]->Deposit(money);
 }
 
 EInput AccountHandler::SelectMenu()
@@ -62,40 +45,14 @@ EInput AccountHandler::SelectMenu()
 	return (EInput)input;
 }
 
-void AccountHandler::WithdrawMoney()
+void AccountHandler::WithdrawMoney(int idx, int money)
 {
-	int no = 0, money = 0;
-
-	std::cout << "[출 금]" << std::endl;
-	std::cout << "계좌번호: ";
-	std::cin >> no;
-
-	for (int i = 0; i < total; ++i)
-	{
-		if (accounts[i]->GetNo() == no)
-		{
-			std::cout << "출금액: ";
-			std::cin >> money;
-			accounts[i]->Withdraw(money);
-			std::cout << "출금완료" << std::endl;
-			return;
-		}
-	}
-	std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+	accounts[idx]->Withdraw(money);
 }
 
-void AccountHandler::ViewInfoAccounts() const
+void AccountHandler::ViewInfoAccounts(int idx) const
 {
-	if (total == 0)
-	{
-		std::cout << "저장된 계좌정보가 존재하지 않습니다." << std::endl;
-		return;
-	}
-
-	for (int i = 0; i < total; ++i)
-	{
-		accounts[i]->ViewInfo();
-	}
+	accounts[idx]->ViewInfo();
 }
 
 void AccountHandler::SaveInfo()
