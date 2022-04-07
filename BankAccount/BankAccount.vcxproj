@@ -141,12 +141,18 @@
   <ItemGroup>
     <ClInclude Include="account.h" />
     <ClInclude Include="AccountHandler.h" />
+    <ClInclude Include="BankSystem.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="HighCreditAccount.h" />
+    <ClInclude Include="NormalAccount.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="account.cpp" />
     <ClCompile Include="AccountHandler.cpp" />
+    <ClCompile Include="BankSystem.cpp" />
+    <ClCompile Include="HighCreditAccount.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NormalAccount.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,12 +4,19 @@
 #define MAX_ACCOUNTS_SIZE 20
 #define MAX_CUSTOMER_NAME 30
 
+enum class ACCOUNT_TYPE
+{
+	NORMAL_ACCOUNT = 1,
+	HIGHCREDIT_ACCOUNT = 2
+};
+
 class Account
 {
 private:
 	int mNo;
 	int mMoney;
 	char* mName;
+	// Á¾·ù
 public:
 	Account() : mNo(0), mMoney(0), mName(NULL) {}
 	Account(int no, int money, const char* name) : mNo(no), mMoney(money)

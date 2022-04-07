@@ -1,9 +1,9 @@
 #include "AccountHandler.h"
 #include <iostream>
 
-bool CheckOverlap(Account* accounts[], int inputNo, int* idx)
+bool AccountHandler::CheckOverlap(int inputNo)
 {
-	for (int i = 0; i < *idx; ++i)
+	for (int i = 0; i < total; ++i)
 	{
 		if (accounts[i]->GetNo() == inputNo)
 		{
@@ -13,30 +13,9 @@ bool CheckOverlap(Account* accounts[], int inputNo, int* idx)
 	return false;
 }
 
-
-void AccountHandler::CreateAccount()
+void AccountHandler::CreateAccount(Account* account)
 {
-	int no;
-	char name[MAX_CUSTOMER_NAME];
-	int money;
-
-	std::cout << "[계좌개설]" << std::endl;
-	std::cout << "계좌번호: ";
-	std::cin >> no;
-
-	if (CheckOverlap(accounts, no, &total))
-	{
-		std::cout << "중복된 계좌가 존재합니다." << std::endl;
-		return;
-	}
-
-	std::cout << "이름: ";
-	std::cin >> name;
-	std::cout << "입금액: ";
-	std::cin >> money;
-	std::cout << std::endl;
-
-	accounts[total++] = new Account(no, money, name);
+	accounts[total++] = account;
 }
 
 void AccountHandler::PrintMenu()

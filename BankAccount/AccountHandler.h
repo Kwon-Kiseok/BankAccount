@@ -19,7 +19,9 @@ public:
 
 	void PrintMenu();
 	EInput SelectMenu();
-	void CreateAccount();
+
+	bool CheckOverlap(int inputNo);
+	void CreateAccount(Account* account);
 	void DepositMoney();
 	void WithdrawMoney();
 	void ViewInfoAccounts() const;
