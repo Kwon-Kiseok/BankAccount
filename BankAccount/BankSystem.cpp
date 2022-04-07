@@ -68,7 +68,13 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		}
 		else if ((ACCOUNT_TYPE)type == ACCOUNT_TYPE::HIGHCREDIT_ACCOUNT)
 		{
-
+			int credit;
+			int ratio;
+			std::cout << "이자율: ";
+			std::cin >> ratio;
+			std::cout << "신용등급(1toA, 2toB, 3toC): ";
+			std::cin >> credit;
+			newAccount = new HighCreditAccount(no, money, name, ratio, credit);
 		}
 		std::cout << std::endl;
 

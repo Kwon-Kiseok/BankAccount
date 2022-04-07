@@ -13,6 +13,7 @@ public:
 		: Account(Account::GetNo(), Account::GetMoney(), Account::GetName()), mRatio(copy.mRatio) {}
 	~NormalAccount() {}
 	
+	virtual int GetRatio() const { return mRatio; }
 	virtual void Deposit(int money);
 	virtual int GetInterest() const;
 };
