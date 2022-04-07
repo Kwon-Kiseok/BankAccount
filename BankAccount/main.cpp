@@ -1,44 +1,40 @@
 #include <iostream>
-#include "Data.h"
-#include "account.h"
+#include "AccountHandler.h"
 
-void update(Account* accounts[], int* idx);
-void SelectMenu(Account* accounts[], int* idx, EInput input);
-void Print();
-EInput Input();
+void update();
+void SelectMenu(AccountHandler* handler, EInput input);
 
 int main()
 {
-	Account* accounts = new Account[MAX_ACCOUNTS_SIZE]{};
-	static int idx = 0;
-	update(&accounts, &idx);
+	update();
 	return 0;
 }
 
-void update(Account* accounts[], int* idx)
+void update()
 {
+	AccountHandler handler;
 	while (1)
 	{
-		Print();
-		SelectMenu(accounts, idx, Input());
+		handler.PrintMenu();
+		SelectMenu(&handler, handler.SelectMenu());
 	}
 }
 
-void SelectMenu(Account* accounts[], int* idx, EInput input)
+void SelectMenu(AccountHandler* handler, EInput input)
 {
 	switch (input)
 	{
 	case EInput::CREATE_ACCOUNT:
-		CreateAccount(accounts, idx);
+		handler->CreateAccount();
 		break;
 	case EInput::DEPOSIT:
-		DepositMoney(accounts, idx);
+		handler->DepositMoney();
 		break;
 	case EInput::WITHDRAW:
-		WithdrawMoney(accounts, idx);
+		handler->WithdrawMoney();
 		break;
 	case EInput::VIEWINFO:
-		ViewInfoAccounts(accounts, idx);
+		handler->ViewInfoAccounts();
 		break;
 	case EInput::SAVE:
 		//SaveInfo(accounts, idx);
@@ -57,26 +53,4 @@ void SelectMenu(Account* accounts[], int* idx, EInput input)
 	}
 
 	std::cout << std::endl;
-}
-
-void Print()
-{
-	std::cout << "=Menu=" << std::endl;
-	std::cout << "1. 계좌개설" << std::endl;
-	std::cout << "2. 입 금" << std::endl;
-	std::cout << "3. 출 금" << std::endl;
-	std::cout << "4. 계좌정보 전체 출력" << std::endl;
-	std::cout << "5. 저 장 (공사중)" << std::endl;
-	std::cout << "6. 불러오기 (공사중)" << std::endl;
-	std::cout << "7. 종 료" << std::endl;
-}
-
-EInput Input()
-{
-	int input = 0;
-	std::cout << "선택: ";
-	std::cin >> input;
-	std::cout << std::endl;
-
-	return (EInput)input;
 }

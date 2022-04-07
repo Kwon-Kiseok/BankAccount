@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 #define MAX_ACCOUNTS_SIZE 20
 #define MAX_CUSTOMER_NAME 30
@@ -42,10 +43,3 @@ public:
 		strcpy_s(mName, (strlen(name) + 1), name);
 	}
 };
-
-void CreateAccount(Account* accounts[], int *idx);
-void DepositMoney(Account* accounts[], int *idx);
-void WithdrawMoney(Account* accounts[], int *idx);
-void ViewInfoAccounts(Account* accounts[], int *idx);
-void SaveInfo(Account* accounts[], int* idx);
-void LoadInfo(Account* accounts[], int* idx);
