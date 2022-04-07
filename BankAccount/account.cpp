@@ -3,7 +3,7 @@
 #include <cassert>
 #include "account.h"
 
-bool IsFindAccount(Account* accounts[], int inputNo, int* idx)
+bool CheckOverlap(Account* accounts[], int inputNo, int* idx)
 {
 	for (int i = 0; i < *idx; ++i)
 	{
@@ -30,7 +30,7 @@ int Account::Withdraw(int money)
 	return money;
 }
 
-void Account::ViewInfo()
+void Account::ViewInfo() const
 {
 	std::cout << "계좌번호: " << this->mNo << std::endl;
 	std::cout << "이 름: " << this->mName << std::endl;
@@ -49,7 +49,7 @@ void CreateAccount(Account* accounts[], int *idx)
 	std::cout << "계좌번호: ";
 	std::cin >> no;
 	
-	if (IsFindAccount(accounts, no, idx))
+	if (CheckOverlap(accounts, no, idx))
 	{
 		std::cout << "중복된 계좌가 존재합니다." << std::endl;
 		return;

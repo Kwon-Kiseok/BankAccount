@@ -25,6 +25,10 @@ public:
 	{
 		delete[] mName;
 	}
+
+	void Deposit(int money);
+	int Withdraw(int money);
+	void ViewInfo() const;
 	
 	int GetNo() const { return mNo; } 
 	int GetMoney() const { return mMoney; } 
@@ -37,10 +41,6 @@ public:
 		mName = new char[strlen(name) + 1];
 		strcpy_s(mName, (strlen(name) + 1), name);
 	}
-
-	void Deposit(int money);
-	int Withdraw(int money);
-	void ViewInfo();
 };
 
 void CreateAccount(Account* accounts[], int *idx);
