@@ -29,26 +29,25 @@ void SelectMenu(Account* accounts[], int* idx, EInput input)
 	switch (input)
 	{
 	case EInput::CREATE_ACCOUNT:
-		accounts[*idx]->CreateAccount(accounts, idx);
+		CreateAccount(accounts, idx);
 		break;
 	case EInput::DEPOSIT:
-		//accounts[*idx]->Deposit(accounts);
+		DepositMoney(accounts, idx);
 		break;
 	case EInput::WITHDRAW:
-		//accounts->Withdraw(accounts);
+		WithdrawMoney(accounts, idx);
 		break;
 	case EInput::VIEWINFO:
-		accounts[*idx]->ViewInfo(accounts);
+		ViewInfoAccounts(accounts, idx);
 		break;
 	case EInput::SAVE:
-		//accounts->Save(accounts, idx);
+		//SaveInfo(accounts, idx);
 		break;
 	case EInput::LOAD:
-		//accounts->Load(accounts, idx);
+		//LoadInfo(accounts, idx);
 		break;
 	case EInput::EXIT:
 	{
-		delete[] accounts;
 		exit(true);
 	}
 	break;
@@ -67,8 +66,8 @@ void Print()
 	std::cout << "2. 입 금" << std::endl;
 	std::cout << "3. 출 금" << std::endl;
 	std::cout << "4. 계좌정보 전체 출력" << std::endl;
-	std::cout << "5. 저 장" << std::endl;
-	std::cout << "6. 불러오기" << std::endl;
+	std::cout << "5. 저 장 (공사중)" << std::endl;
+	std::cout << "6. 불러오기 (공사중)" << std::endl;
 	std::cout << "7. 종 료" << std::endl;
 }
 

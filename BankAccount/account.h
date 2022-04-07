@@ -30,10 +30,22 @@ public:
 	int GetMoney() const { return mMoney; } 
 	char* GetName() const { return mName; }
 
-	void CreateAccount(Account* accounts[], int* idx);
-	void Deposit(Account* accounts);
-	void Withdraw(Account* accounts);
-	void ViewInfo(Account* accounts[]);
-	void Save(Account* accounts, int* idx);
-	void Load(Account* accounts, int* idx);
+	void SetNo(int no) { mNo = no; }
+	void SetMoney(int money) { mMoney = money; }
+	void SetName(char* name)
+	{
+		mName = new char[strlen(name) + 1];
+		strcpy_s(mName, (strlen(name) + 1), name);
+	}
+
+	void Deposit(int money);
+	int Withdraw(int money);
+	void ViewInfo();
 };
+
+void CreateAccount(Account* accounts[], int *idx);
+void DepositMoney(Account* accounts[], int *idx);
+void WithdrawMoney(Account* accounts[], int *idx);
+void ViewInfoAccounts(Account* accounts[], int *idx);
+void SaveInfo(Account* accounts[], int* idx);
+void LoadInfo(Account* accounts[], int* idx);

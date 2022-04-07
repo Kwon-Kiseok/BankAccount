@@ -3,101 +3,126 @@
 #include <cassert>
 #include "account.h"
 
-bool IsFindAccount(Account* accounts, int inputNo, int* idx)
+bool IsFindAccount(Account* accounts[], int inputNo, int* idx)
 {
-	for (int i = 0; accounts[i].GetNo() != 0; ++i)
+	for (int i = 0; i < *idx; ++i)
 	{
-		if (accounts[i].GetNo() == inputNo)
+		if (accounts[i]->GetNo() == inputNo)
 		{
-			if (idx != nullptr)
-				*idx = i;
 			return true;
 		}
 	}
-
 	return false;
 }
 
-void Account::CreateAccount(Account* accounts[], int* idx)
+void Account::Deposit(int money)
 {
-	int no = 0;
+	mMoney += money;
+}
+
+int Account::Withdraw(int money)
+{
+	if (mMoney < money)
+	{
+		return 0;
+	}
+	mMoney -= money;
+	return money;
+}
+
+void Account::ViewInfo()
+{
+	std::cout << "계좌번호: " << this->mNo << std::endl;
+	std::cout << "이 름: " << this->mName << std::endl;
+	std::cout << "잔 액: " << this->mMoney << std::endl;
+	std::cout << std::endl;
+
+}
+
+void CreateAccount(Account* accounts[], int *idx)
+{
+	int no;
+	char name[MAX_CUSTOMER_NAME];
+	int money;
 
 	std::cout << "[계좌개설]" << std::endl;
 	std::cout << "계좌번호: ";
 	std::cin >> no;
-
-	if (IsFindAccount(*accounts, no, nullptr))
+	
+	if (IsFindAccount(accounts, no, idx))
 	{
-		std::cout << "입력된 계좌번호는 사용할 수 없습니다." << std::endl;
+		std::cout << "중복된 계좌가 존재합니다." << std::endl;
 		return;
 	}
-	else
-	{
-		char name[MAX_CUSTOMER_NAME];
-		int money = 0;
-		std::cout << "이름: ";
-		std::cin >> name;
-		std::cout << "입금액: ";
-		std::cin >> money;
+	
+	std::cout << "이름: ";
+	std::cin >> name;
+	std::cout << "입금액: ";
+	std::cin >> money;
+	std::cout<<std::endl;
 
-		accounts[*idx] = new Account(no, money, name);
-		(*idx)++;
-	}
+	accounts[(* idx)++] = new Account(no, money, name);
 }
 
-void Account::Deposit(Account* accounts)
+void DepositMoney(Account* accounts[], int *idx)
 {
-	int mNo = 0, mMoney = 0;
-	int idx = 0;
-
+	int money;
+	int no;
 	std::cout << "[입 금]" << std::endl;
 	std::cout << "계좌번호: ";
-	std::cin >> mNo;
+	std::cin >> no;
 
-	if (!IsFindAccount(accounts, mNo, &idx))
+	for(int i = 0; i < *idx; ++i)
 	{
-		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
-		return;
+		if (accounts[i]->GetNo() == no)
+		{
+			std::cout << "입금액: ";
+			std::cin >> money;
+			accounts[i]->Deposit(money);
+			std::cout << "입금완료" << std::endl;
+			return;
+		}
 	}
-
-	std::cout << "입금액: ";
-	std::cin >> mMoney;
-	accounts[idx].mMoney += mMoney;
-	std::cout << "입금완료" << std::endl;
+	std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
 }
 
-void Account::Withdraw(Account* accounts)
+void WithdrawMoney(Account* accounts[], int *idx)
 {
-	int mNo = 0, mMoney = 0;
-	int idx = 0;
+	int no = 0, money = 0;
 
 	std::cout << "[출 금]" << std::endl;
 	std::cout << "계좌번호: ";
-	std::cin >> mNo;
+	std::cin >> no;
 
-	if (!IsFindAccount(accounts, mNo, &idx))
+	for (int i = 0; i < *idx; ++i)
 	{
-		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+		if (accounts[i]->GetNo() == no)
+		{
+			std::cout << "출금액: ";
+			std::cin >> money;
+			accounts[i]->Withdraw(money);
+			std::cout << "출금완료" << std::endl;
+			return;
+		}
+	}
+	std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
+}
+
+void ViewInfoAccounts(Account* accounts[], int *idx)
+{
+	if (*idx == 0)
+	{
+		std::cout << "저장된 계좌정보가 존재하지 않습니다." << std::endl;
 		return;
 	}
 
-	std::cout << "출금액: ";
-	std::cin >> mMoney;
-	accounts[idx].mMoney -= mMoney;
-	std::cout << "출금완료" << std::endl;
-}
-
-void Account::ViewInfo(Account* accounts[])
-{
-	for (int i = 0; accounts[i]->GetNo() != 0; ++i)
+	for (int i = 0; i < *idx; ++i)
 	{
-		std::cout << "계좌번호: " << accounts[i]->GetNo() << std::endl;
-		std::cout << "이 름: " << accounts[i]->GetName() << std::endl;
-		std::cout << "잔 액: " << accounts[i]->GetMoney() << std::endl;
+		accounts[i]->ViewInfo();
 	}
 }
 
-void Account::Save(Account* accounts, int* idx)
+void SaveInfo(Account* accounts[], int *idx)
 {
 	int i = 0;
 	FILE* fp;
@@ -114,7 +139,7 @@ void Account::Save(Account* accounts, int* idx)
 	fclose(fp);
 }
 
-void Account::Load(Account* accounts, int* idx)
+void LoadInfo(Account* accounts[], int* idx)
 {
 	int i = 0;
 	FILE* fp;
