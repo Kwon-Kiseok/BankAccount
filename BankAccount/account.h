@@ -12,7 +12,7 @@ enum class ACCOUNT_TYPE
 
 class Account
 {
-private:
+protected:
 	int mNo;
 	int mMoney;
 	char* mName;

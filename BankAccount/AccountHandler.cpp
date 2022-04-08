@@ -18,6 +18,14 @@ void AccountHandler::CreateAccount(Account* account)
 	accounts[total++] = account;
 }
 
+AccountHandler::~AccountHandler()
+{
+	for (int i = 0; i < total; ++i)
+	{
+		delete accounts[i];
+	}
+}
+
 void AccountHandler::PrintMenu()
 {
 	std::cout << "=Menu=" << std::endl;
@@ -55,36 +63,36 @@ void AccountHandler::ViewInfoAccounts(int idx) const
 	accounts[idx]->ViewInfo();
 }
 
-void AccountHandler::SaveInfo()
-{
-	int i = 0;
-	FILE* fp;
-	fopen_s(&fp, "save.dat", "wb");
-	if (fp == NULL)
-	{
-		std::cout << "파일 읽기 실패" << std::endl;
-		return;
-	}
+//void AccountHandler::SaveInfo()
+//{
+//	int i = 0;
+//	FILE* fp;
+//	fopen_s(&fp, "save.dat", "wb");
+//	if (fp == NULL)
+//	{
+//		std::cout << "파일 읽기 실패" << std::endl;
+//		return;
+//	}
+//
+//	fwrite(&total, sizeof(int), 1, fp);
+//	fwrite(accounts, sizeof(Account), total, fp);
+//
+//	fclose(fp);
+//}
 
-	fwrite(&total, sizeof(int), 1, fp);
-	fwrite(accounts, sizeof(Account), total, fp);
-
-	fclose(fp);
-}
-
-void AccountHandler::LoadInfo()
-{
-	int i = 0;
-	FILE* fp;
-	fopen_s(&fp, "save.dat", "rb");
-	if (NULL == fp)
-	{
-		std::cout << "파일 읽기 실패" << std::endl;
-		return;
-	}
-
-	fread(&total, sizeof(int), 1, fp);
-	fread(accounts, sizeof(Account), total, fp);
-
-	fclose(fp);
-}
+//void AccountHandler::LoadInfo()
+//{
+//	int i = 0;
+//	FILE* fp;
+//	fopen_s(&fp, "save.dat", "rb");
+//	if (NULL == fp)
+//	{
+//		std::cout << "파일 읽기 실패" << std::endl;
+//		return;
+//	}
+//
+//	fread(&total, sizeof(int), 1, fp);
+//	fread(accounts, sizeof(Account), total, fp);
+//
+//	fclose(fp);
+//}

@@ -10,7 +10,7 @@ NormalAccount::NormalAccount(int no, int money, const char* name, int ratio)
 NormalAccount::NormalAccount(const NormalAccount& copy)
 	: Account(copy), mRatio(copy.mRatio) {}
 
-NormalAccount::~NormalAccount() {};
+NormalAccount::~NormalAccount() {}
 
 int NormalAccount::GetRatio() const
 {

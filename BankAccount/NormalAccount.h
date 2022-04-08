@@ -3,7 +3,7 @@
 
 class NormalAccount : public Account
 {
-private:
+protected:
 	int mRatio;
 public:
 	NormalAccount();

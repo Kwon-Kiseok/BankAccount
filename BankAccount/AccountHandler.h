@@ -3,21 +3,17 @@
 #include "account.h"
 #include "NormalAccount.h"
 #include "HighCreditAccount.h"
+#include "AccountArray.h"
 
 class AccountHandler
 {
 private:
-	Account* accounts[MAX_ACCOUNTS_SIZE];
+	//Account* accounts[MAX_ACCOUNTS_SIZE];
+	AccountArray accounts;
 	int total = 0;
 public:
 	AccountHandler() : total(0) {}
-	~AccountHandler()
-	{
-		for (int i = 0; i < total; ++i)
-		{
-			delete accounts[i];
-		}
-	}
+	~AccountHandler();
 
 	void PrintMenu();
 	EInput SelectMenu();
@@ -30,7 +26,7 @@ public:
 	void DepositMoney(int idx, int money);
 	void WithdrawMoney(int idx, int money);
 	void ViewInfoAccounts(int idx) const;
-	void SaveInfo();
-	void LoadInfo();
+	//void SaveInfo();
+	//void LoadInfo();
 };
 

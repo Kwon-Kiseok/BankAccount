@@ -3,6 +3,7 @@
 void BankSystem::Run()
 {
 	AccountHandler handler;
+
 	while (1)
 	{
 		handler.PrintMenu();
