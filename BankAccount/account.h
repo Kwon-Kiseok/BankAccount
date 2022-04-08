@@ -17,27 +17,17 @@ private:
 	int mMoney;
 	char* mName;
 public:
-	Account() : mNo(0), mMoney(0), mName(NULL) {}
-	Account(int no, int money, const char* name) : mNo(no), mMoney(money)
-	{
-		mName = new char[strlen(name) + 1];
-		strcpy_s(mName, (strlen(name) + 1), name);
-	}
-	Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney)
-	{
-		mName = new char[strlen(copy.mName) + 1];
-		strcpy_s(mName, (strlen(copy.mName) + 1), copy.mName);
-	}
-	~Account()
-	{
-		delete[] mName;
-	}
+	Account();
+	Account(int no, int money, const char* name);
+	Account(const Account& copy);
+	virtual ~Account();
 
 	virtual void Deposit(int money);
-	virtual int Withdraw(int money);
-	virtual void ViewInfo() const;
-	
-	virtual int GetNo() const { return mNo; } 
-	virtual int GetMoney() const { return mMoney; } 
-	virtual char* GetName() const { return mName; }
+	int Withdraw(int money);
+	void ViewInfo() const;
+	// v-table 유무가 있기 때문에
+	// 정확하게 하려면 재구현 할 것만 virtual 을 붙이기
+	int GetNo() const;
+	int GetMoney() const;
+	char* GetName() const;
 };

@@ -74,7 +74,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 			std::cin >> ratio;
 			std::cout << "신용등급(1toA, 2toB, 3toC): ";
 			std::cin >> credit;
-			newAccount = new HighCreditAccount(no, money, name, ratio, credit);
+			newAccount = new HighCreditAccount(no, money, name, ratio, (CREDIT_RATING)credit);
 		}
 		std::cout << std::endl;
 
@@ -135,7 +135,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 
 		for (int i = 0; i < handler->GetTotal(); ++i)
 		{
-			handler->ViewInfoAccounts(i);
+			handler->ViewInfoAccounts(i); // 핸들러에서 처리하도록 수정
 		}
 	}
 		break;

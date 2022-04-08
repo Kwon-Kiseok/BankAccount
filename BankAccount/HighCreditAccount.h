@@ -11,18 +11,16 @@ enum class CREDIT_RATING
 class HighCreditAccount : public NormalAccount
 {
 private:
-	int mCreditRating;
+	CREDIT_RATING mCreditRating;
 public:
-	HighCreditAccount() : mCreditRating(0) {}
-	HighCreditAccount(int no, int money, const char* name, int ratio, int creditRating)
-		: NormalAccount(no, money, name, ratio), mCreditRating(creditRating) {}
-	HighCreditAccount(const HighCreditAccount& copy)
-		: NormalAccount(NormalAccount::GetNo(), NormalAccount::GetMoney(), NormalAccount::GetName(), NormalAccount::GetRatio()), mCreditRating(copy.mCreditRating) {}
-	~HighCreditAccount() {}
+	HighCreditAccount();
+	HighCreditAccount(int no, int money, const char* name, int ratio, CREDIT_RATING creditRating);
+	HighCreditAccount(const HighCreditAccount& copy);
+	virtual ~HighCreditAccount();
 
-	virtual int GetCreditRating() const { return mCreditRating; }
-	virtual int GetInterest() const;
+	CREDIT_RATING GetCreditRating() const;
+	int GetInterest() const;
 	virtual void Deposit(int money);
-	virtual int GetBonusInterest(int creditRating) const;
+	int GetBonusInterest(int creditRating) const;
 };
 

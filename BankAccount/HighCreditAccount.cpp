@@ -1,8 +1,27 @@
 #include "HighCreditAccount.h"
 
+HighCreditAccount::HighCreditAccount() : mCreditRating(CREDIT_RATING::A) 
+{
+}
+
+HighCreditAccount::HighCreditAccount(int no, int money, const char* name, int ratio, CREDIT_RATING creditRating)
+	: NormalAccount(no, money, name, ratio), mCreditRating(creditRating) 
+{
+}
+
+HighCreditAccount::HighCreditAccount(const HighCreditAccount& copy)
+	: NormalAccount(copy), mCreditRating(copy.mCreditRating) {}
+
+HighCreditAccount::~HighCreditAccount() {}
+
+CREDIT_RATING HighCreditAccount::GetCreditRating() const
+{
+	return mCreditRating;
+}
+
 int HighCreditAccount::GetInterest() const
 {
-	return (Account::GetMoney()/100) * (NormalAccount::GetRatio() + GetBonusInterest(mCreditRating));
+	return (Account::GetMoney()/100) * (NormalAccount::GetRatio() + GetBonusInterest((int)mCreditRating));
 }
 
 void HighCreditAccount::Deposit(int money)
