@@ -24,6 +24,17 @@ Account::~Account()
 	delete[] mName;
 }
 
+Account& Account::operator=(const Account& ref)
+{
+	delete[] mName;
+	int len = strlen(ref.mName) + 1;
+	mName = new char[len];
+	strcpy_s(mName, len, ref.mName);
+	mNo = ref.mNo;
+	mMoney = ref.mMoney;
+	return *this;
+}
+
 void Account::Deposit(int money)
 {
 	// 예외처리 추가

@@ -21,6 +21,8 @@ public:
 	Account(int no, int money, const char* name);
 	Account(const Account& copy);
 	virtual ~Account();
+	
+	Account& operator=(const Account& ref);
 
 	virtual void Deposit(int money);
 	int Withdraw(int money);
