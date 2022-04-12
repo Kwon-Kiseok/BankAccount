@@ -17,7 +17,6 @@ Account::Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney), mNam
 
 Account::~Account()
 {
-	mName.~string();
 }
 
 Account& Account::operator=(const Account& ref)

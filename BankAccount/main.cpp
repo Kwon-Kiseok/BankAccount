@@ -3,7 +3,6 @@
 
 int main()
 {
-	BoundCheckPtrArray<int> array;
 	BankSystem system;
 	system.Run();
 	return 0;
