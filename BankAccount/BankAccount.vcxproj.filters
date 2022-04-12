@@ -33,7 +33,7 @@
     <ClInclude Include="BankSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="AccountArray.h">
+    <ClInclude Include="BoundCheckPtrArray.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="istream.h">
@@ -65,7 +65,7 @@
     <ClCompile Include="BankSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AccountArray.cpp">
+    <ClCompile Include="BoundCheckPtrArray.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="istream.cpp">

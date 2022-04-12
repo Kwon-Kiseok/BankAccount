@@ -3,13 +3,13 @@
 #include "account.h"
 #include "NormalAccount.h"
 #include "HighCreditAccount.h"
-#include "AccountArray.h"
+#include "BoundCheckPtrArray.h"
 
 class AccountHandler
 {
 private:
 	//Account* accounts[MAX_ACCOUNTS_SIZE];
-	AccountArray accounts;
+	BoundCheckPtrArray<Account> accounts;
 	int total = 0;
 public:
 	AccountHandler() : total(0) {}

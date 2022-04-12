@@ -1,6 +1,6 @@
-#include "AccountArray.h"
+#include "BoundCheckPtrArray.h"
 
-AccountArray::AccountArray(int len) : arrlen(len)
+BoundCheckPtrArray<T>::BoundCheckPtrArray(int len) : arrlen(len)
 {
 	arr = new Account_PTR[len];
 }
