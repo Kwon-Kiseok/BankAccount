@@ -152,7 +152,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 	{
 		bQuit = true;
 		return;
-		//exit(true); // -> 프로세스 자체를 종료, 소멸자들을 호출을 안함. 프로세스 자체가 꺼져버리기 때문에 -> 있던 메모리들은 다 반환이 되는데
+		//exit(true); // -> 프로세스 자체를 종료, 소멸자들을 호출을 안함.
 	}
 	break;
 	default:
