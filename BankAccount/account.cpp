@@ -7,29 +7,23 @@ Account::Account() : mNo(0), mMoney(0), mName(nullptr)
 {
 }
 
-Account::Account(int no, int money, const char* name) : mNo(no), mMoney(money)
+Account::Account(int no, int money, const my::string name) : mNo(no), mMoney(money), mName(my::string(name))
 {
-	mName = new char[strlen(name) + 1];
-	strcpy_s(mName, (strlen(name) + 1), name);
 }
 
-Account::Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney)
+Account::Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney), mName(my::string(copy.mName))
 {
-	mName = new char[strlen(copy.mName) + 1];
-	strcpy_s(mName, (strlen(copy.mName) + 1), copy.mName);
 }
 
 Account::~Account()
 {
-	delete[] mName;
+	mName.~string();
 }
 
 Account& Account::operator=(const Account& ref)
 {
-	delete[] mName;
-	int len = strlen(ref.mName) + 1;
-	mName = new char[len];
-	strcpy_s(mName, len, ref.mName);
+	mName.~string();
+	mName = my::string(ref.mName);
 	mNo = ref.mNo;
 	mMoney = ref.mMoney;
 	return *this;
@@ -69,7 +63,7 @@ int Account::GetMoney() const
 	return mMoney;
 }
 
-char* Account::GetName() const
+my::string Account::GetName() const
 {
 	return mName;
 }

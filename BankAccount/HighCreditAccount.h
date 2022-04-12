@@ -14,7 +14,7 @@ private:
 	CREDIT_RATING mCreditRating;
 public:
 	HighCreditAccount();
-	HighCreditAccount(int no, int money, const char* name, int ratio, CREDIT_RATING creditRating);
+	HighCreditAccount(int no, int money, const my::string name, int ratio, CREDIT_RATING creditRating);
 	HighCreditAccount(const HighCreditAccount& copy);
 	virtual ~HighCreditAccount();
 

@@ -4,7 +4,7 @@ NormalAccount::NormalAccount() : mRatio(0)
 {
 }
 
-NormalAccount::NormalAccount(int no, int money, const char* name, int ratio)
+NormalAccount::NormalAccount(int no, int money, const my::string name, int ratio)
 	: Account(no, money, name), mRatio(ratio) {}
 
 NormalAccount::NormalAccount(const NormalAccount& copy)

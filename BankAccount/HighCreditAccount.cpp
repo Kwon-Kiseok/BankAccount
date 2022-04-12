@@ -4,7 +4,7 @@ HighCreditAccount::HighCreditAccount() : mCreditRating(CREDIT_RATING::A)
 {
 }
 
-HighCreditAccount::HighCreditAccount(int no, int money, const char* name, int ratio, CREDIT_RATING creditRating)
+HighCreditAccount::HighCreditAccount(int no, int money, const my::string name, int ratio, CREDIT_RATING creditRating)
 	: NormalAccount(no, money, name, ratio), mCreditRating(creditRating) 
 {
 }

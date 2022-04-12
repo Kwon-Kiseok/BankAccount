@@ -145,7 +145,10 @@
     <ClInclude Include="BankSystem.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="HighCreditAccount.h" />
+    <ClInclude Include="istream.h" />
+    <ClInclude Include="MyString.h" />
     <ClInclude Include="NormalAccount.h" />
+    <ClInclude Include="ostream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="account.cpp" />
@@ -153,8 +156,11 @@
     <ClCompile Include="AccountHandler.cpp" />
     <ClCompile Include="BankSystem.cpp" />
     <ClCompile Include="HighCreditAccount.cpp" />
+    <ClCompile Include="istream.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyString.cpp" />
     <ClCompile Include="NormalAccount.cpp" />
+    <ClCompile Include="ostream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

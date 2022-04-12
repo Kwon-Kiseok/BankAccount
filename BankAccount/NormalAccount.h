@@ -7,7 +7,7 @@ protected:
 	int mRatio;
 public:
 	NormalAccount();
-	NormalAccount(int no, int money, const char* name, int ratio);
+	NormalAccount(int no, int money, const my::string name, int ratio);
 	NormalAccount(const NormalAccount& copy);
 	virtual ~NormalAccount();
 	
