@@ -13,87 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\Exception">
+      <UniqueIdentifier>{de10113a-00a1-4f2c-922b-55b28f5b0e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Exception">
+      <UniqueIdentifier>{43ea179e-d77c-4f95-a81e-f7e20d5c14af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Account">
+      <UniqueIdentifier>{22e7b849-cba0-4e73-9c6c-dd2c804ca923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\myString">
+      <UniqueIdentifier>{ac062813-3478-4350-82ed-3b58aad4aeb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Account">
+      <UniqueIdentifier>{e5c2db0a-d0b1-4b05-9a8c-73863b91bec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\myString">
+      <UniqueIdentifier>{25e1cc06-a2ac-4cb2-9641-566985e3c743}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="account.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Data.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AccountHandler.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalAccount.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="HighCreditAccount.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="BankSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BoundCheckPtrArray.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="istream.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MyString.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ostream.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="WithdrawException.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Exception</Filter>
     </ClInclude>
     <ClInclude Include="InputMoneyException.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="WithdrawException.h">
+      <Filter>헤더 파일\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="account.h">
+      <Filter>헤더 파일\Account</Filter>
+    </ClInclude>
+    <ClInclude Include="HighCreditAccount.h">
+      <Filter>헤더 파일\Account</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalAccount.h">
+      <Filter>헤더 파일\Account</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString.h">
+      <Filter>헤더 파일\myString</Filter>
+    </ClInclude>
+    <ClInclude Include="istream.h">
+      <Filter>헤더 파일\myString</Filter>
+    </ClInclude>
+    <ClInclude Include="ostream.h">
+      <Filter>헤더 파일\myString</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountHandler.h">
+      <Filter>헤더 파일\Account</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundCheckPtrArray.h">
+      <Filter>헤더 파일\Account</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="account.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AccountHandler.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalAccount.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="HighCreditAccount.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BankSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BoundCheckPtrArray.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="istream.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MyString.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ostream.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Exception.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Exception</Filter>
     </ClCompile>
     <ClCompile Include="WithdrawException.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Exception</Filter>
     </ClCompile>
     <ClCompile Include="InputMoneyException.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="account.cpp">
+      <Filter>소스 파일\Account</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalAccount.cpp">
+      <Filter>소스 파일\Account</Filter>
+    </ClCompile>
+    <ClCompile Include="HighCreditAccount.cpp">
+      <Filter>소스 파일\Account</Filter>
+    </ClCompile>
+    <ClCompile Include="istream.cpp">
+      <Filter>소스 파일\myString</Filter>
+    </ClCompile>
+    <ClCompile Include="MyString.cpp">
+      <Filter>소스 파일\myString</Filter>
+    </ClCompile>
+    <ClCompile Include="ostream.cpp">
+      <Filter>소스 파일\myString</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountHandler.cpp">
+      <Filter>소스 파일\Account</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundCheckPtrArray.cpp">
+      <Filter>소스 파일\Account</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
