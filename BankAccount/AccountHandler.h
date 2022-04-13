@@ -23,6 +23,7 @@ public:
 
 	bool CheckOverlap(int inputNo);
 	void CreateAccount(Account* account);
+	void DeleteAccount(int idx);
 	void DepositMoney(int idx, int money) throw(InputMoneyException);
 	void WithdrawMoney(int idx, int money);
 	void ViewInfoAccounts(int idx) const;

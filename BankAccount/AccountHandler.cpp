@@ -18,6 +18,18 @@ void AccountHandler::CreateAccount(Account* account)
 	accounts[total++] = account;
 }
 
+void AccountHandler::DeleteAccount(int idx)
+{
+	delete accounts[idx];
+	accounts[idx] = nullptr;
+
+	for (int i = idx; i < total-1; ++i)
+	{
+		accounts[i] = accounts[i + 1];
+	}
+	total--;
+}
+
 AccountHandler::~AccountHandler()
 {
 	for (int i = 0; i < total; ++i)
@@ -32,10 +44,11 @@ void AccountHandler::PrintMenu()
 	std::cout << "1. 계좌개설" << std::endl;
 	std::cout << "2. 입 금" << std::endl;
 	std::cout << "3. 출 금" << std::endl;
-	std::cout << "4. 계좌정보 전체 출력" << std::endl;
-	std::cout << "5. 저 장 (공사중)" << std::endl;
-	std::cout << "6. 불러오기 (공사중)" << std::endl;
-	std::cout << "7. 종 료" << std::endl;
+	std::cout << "4. 계좌삭제" << std::endl;
+	std::cout << "5. 계좌정보 전체 출력" << std::endl;
+	std::cout << "6. 저 장 (공사중)" << std::endl;
+	std::cout << "7. 불러오기 (공사중)" << std::endl;
+	std::cout << "8. 종 료" << std::endl;
 }
 
 void AccountHandler::DepositMoney(int idx, int money) throw(InputMoneyException)

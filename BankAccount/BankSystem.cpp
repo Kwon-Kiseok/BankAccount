@@ -156,6 +156,26 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cout << "입력된 계좌번호에 해당하는 정보가 없습니다." << std::endl;
 	}
 		break;
+	case EInput::DELETE_ACCOUNT:
+	{
+		int no;
+
+		std::cout << "[계좌삭제]" << std::endl;
+		std::cout << "계좌번호: ";
+		std::cin >> no;
+
+		for (int i = 0; i < handler->GetTotal(); ++i)
+		{
+			if (handler->GetAccount(i)->GetNo() == no)
+			{
+				handler->DeleteAccount(i);
+				std::cout << "해당 계좌가 삭제되었습니다." << std::endl;
+				return;
+			}
+		}
+		std::cout << "해당 계좌는 존재하지 않습니다." << std::endl;
+	}
+		break;
 	case EInput::VIEWINFO:
 	{
 		if (handler->GetTotal() == 0)
