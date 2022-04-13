@@ -38,8 +38,14 @@ void AccountHandler::PrintMenu()
 	std::cout << "7. Á¾ ·á" << std::endl;
 }
 
-void AccountHandler::DepositMoney(int idx, int money)
+void AccountHandler::DepositMoney(int idx, int money) throw(InputMoneyException)
 {
+	if (money < 0)
+	{
+		InputMoneyException expn(money);
+		throw expn;
+	}
+
 	accounts[idx]->Deposit(money);
 }
 

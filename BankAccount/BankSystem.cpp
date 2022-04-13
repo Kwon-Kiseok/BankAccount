@@ -1,4 +1,5 @@
 #include "BankSystem.h"
+#include "Exception.h"
 
 static bool bQuit = false;
 
@@ -96,9 +97,20 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		{
 			if (handler->GetAccount(i)->GetNo() == no)
 			{
-				std::cout << "입금액: ";
-				std::cin >> money;
-				handler->DepositMoney(i, money);
+				while (1)
+				{
+					try
+					{
+						std::cout << "입금액: ";
+						std::cin >> money;
+						handler->DepositMoney(i, money);
+						break;
+					}
+					catch (InputMoneyException& expn)
+					{
+						expn.ShowMessage();
+					}
+				}
 				std::cout << "입금완료" << std::endl;
 				return;
 			}
@@ -118,10 +130,26 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		{
 			if (handler->GetAccount(i)->GetNo() == no)
 			{
-				std::cout << "출금액: ";
-				std::cin >> money;
-				handler->WithdrawMoney(i, money);
-				std::cout << "출금완료" << std::endl;
+				while (1)
+				{
+					try
+					{
+						std::cout << "출금액: ";
+						std::cin >> money;
+						handler->WithdrawMoney(i, money);
+
+						std::cout << "출금완료" << std::endl;
+						break;
+					}
+					catch (InputMoneyException& expn)
+					{
+						expn.ShowMessage();
+					}
+					catch (WithdrawException& expn)
+					{
+						expn.ShowMessage();
+					}
+				}
 				return;
 			}
 		}

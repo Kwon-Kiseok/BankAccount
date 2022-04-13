@@ -30,15 +30,20 @@ Account& Account::operator=(const Account& ref)
 
 void Account::Deposit(int money)
 {
-	// 예외처리 추가
 	mMoney += money;
 }
 
-int Account::Withdraw(int money)
+int Account::Withdraw(int money) throw(InputMoneyException, WithdrawException)
 {
-	if (mMoney < money)
+	if (money < 0)
 	{
-		return 0;
+		InputMoneyException expn(money);
+		throw expn;
+	}
+	if (money > mMoney)
+	{
+		WithdrawException expn(mMoney);
+		throw expn;
 	}
 	mMoney -= money;
 	return money;

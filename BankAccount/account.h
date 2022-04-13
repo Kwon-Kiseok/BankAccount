@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include "MyString.h"
+#include "InputMoneyException.h"
+#include "WithdrawException.h"
 
 #define MAX_ACCOUNTS_SIZE 20
 #define MAX_CUSTOMER_NAME 30
@@ -26,7 +28,7 @@ public:
 	Account& operator=(const Account& ref);
 
 	virtual void Deposit(int money);
-	int Withdraw(int money);
+	int Withdraw(int money) throw(InputMoneyException, WithdrawException);
 	void ViewInfo() const;
 	// v-table 유무가 있기 때문에
 	// 정확하게 하려면 재구현 할 것만 virtual 을 붙이기

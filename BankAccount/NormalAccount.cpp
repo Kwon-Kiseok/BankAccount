@@ -26,5 +26,5 @@ void NormalAccount::Deposit(int money)
 
 int NormalAccount::GetInterest() const
 {
-	return (Account::GetMoney() / 100) * mRatio;
+	return (Account::GetMoney() * mRatio / 100);
 }
