@@ -10,11 +10,15 @@ namespace my
 	{
 	private:
 		char* mStr;
+		int len;
 	public:
 		string();
 		string(const char* str);
 		string(const string& copy);
 		~string();
+
+
+		int GetLen(const char* str);
 
 		friend string operator+(const string& lhs, const string& rhs);
 		string& operator=(const string& ref);

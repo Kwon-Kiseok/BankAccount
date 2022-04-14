@@ -7,11 +7,11 @@ Account::Account() : mNo(0), mMoney(0), mName(nullptr)
 {
 }
 
-Account::Account(int no, int money, const my::string name) : mNo(no), mMoney(money), mName(my::string(name))
+Account::Account(int no, int money, const my::string name) : mNo(no), mMoney(money), mName(name)
 {
 }
 
-Account::Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney), mName(my::string(copy.mName))
+Account::Account(const Account& copy) : mNo(copy.mNo), mMoney(copy.mMoney), mName(copy.mName)
 {
 }
 
@@ -21,7 +21,7 @@ Account::~Account()
 
 Account& Account::operator=(const Account& ref)
 {
-	mName.~string();
+	//mName.~string();
 	mName = my::string(ref.mName);
 	mNo = ref.mNo;
 	mMoney = ref.mMoney;

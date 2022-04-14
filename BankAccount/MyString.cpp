@@ -2,20 +2,20 @@
 #include <cstring>
 
 my::string::string()
-	:mStr(NULL)
+	:mStr(NULL), len(0)
 {
 }
 
 my::string::string(const char* str)
 {
-	int len = strlen(str) + 1;
+	GetLen(str);
 	mStr = new char[len];
 	strcpy_s(mStr, len, str);
 }
 
 my::string::string(const string& copy)
 {
-	int len = strlen(copy.mStr) + 1;
+	GetLen(copy.mStr);
 	mStr = new char[len];
 	strcpy_s(mStr, len, copy.mStr);
 }
@@ -25,12 +25,19 @@ my::string::~string()
 	delete[] mStr;
 }
 
+int my::string::GetLen(const char* str)
+{
+	return len = strlen(str) + 1;
+}
+
 my::string& my::string::operator=(const string& ref)
 {
-	delete[] mStr;
-	int len = strlen(ref.mStr) + 1;
-	mStr = new char[len];
-	strcpy_s(this->mStr, len, ref.mStr);
+	if (mStr != nullptr)
+	{
+		delete[] mStr;
+		mStr = nullptr;
+	}
+	*this = ref;
 	return *this;
 }
 
@@ -46,7 +53,7 @@ bool my::string::operator==(const string& ref)
 
 my::string my::operator+(const string& lhs, const string& rhs)
 {
-	int len = strlen(lhs.mStr) + strlen(rhs.mStr) + 1;
+	int len = lhs.len + rhs.len - 1;
 	string temp;
 	temp.mStr = new char[len];
 	strcpy_s(temp.mStr, len, lhs.mStr);
