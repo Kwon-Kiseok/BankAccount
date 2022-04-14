@@ -5,11 +5,14 @@ class BankSystem
 {
 private:
 	AccountHandler handler;
+	EInput input;
 public:
-	BankSystem() {}
+	BankSystem() : input(static_cast<EInput>(0)) {}
 	~BankSystem() {}
 
 	void Run();
-	void SelectMenu(AccountHandler* handler, EInput input);
+	void SelectMenu();
+	void PrintMenu();
+	EInput InputSelect();
 };
 

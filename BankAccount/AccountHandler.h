@@ -15,9 +15,6 @@ public:
 	AccountHandler() : total(0) {}
 	~AccountHandler();
 
-	void PrintMenu();
-	EInput SelectMenu();
-
 	int GetTotal() const { return total; };
 	Account* GetAccount(int i) const { return accounts[i]; };
 

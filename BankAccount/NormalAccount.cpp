@@ -12,6 +12,18 @@ NormalAccount::NormalAccount(const NormalAccount& copy)
 
 NormalAccount::~NormalAccount() {}
 
+NormalAccount& NormalAccount::operator=(const NormalAccount& ref)
+{
+	delete& mName;
+	mName = nullptr;
+
+	mName = my::string(ref.mName);
+	mNo = ref.mNo;
+	mMoney = ref.mMoney;
+
+	return *this;
+}
+
 int NormalAccount::GetRatio() const
 {
 	return mRatio;

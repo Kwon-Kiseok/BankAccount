@@ -5,16 +5,16 @@ static bool bQuit = false;
 
 void BankSystem::Run()
 {
-	AccountHandler handler;
 
 	while (!bQuit)
 	{
-		handler.PrintMenu();
-		SelectMenu(&handler, handler.SelectMenu());
+		PrintMenu();
+		InputSelect();
+		SelectMenu();
 	}
 }
 
-void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
+void BankSystem::SelectMenu()
 {
 	switch (input)
 	{
@@ -52,7 +52,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cout << "계좌번호: ";
 		std::cin >> no;
 
-		if (handler->CheckOverlap(no))
+		if (handler.CheckOverlap(no))
 		{
 			std::cout << "중복된 계좌가 존재합니다." << std::endl;
 			return;
@@ -82,7 +82,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		}
 		std::cout << std::endl;
 
-		handler->CreateAccount(newAccount);
+		handler.CreateAccount(newAccount);
 	}
 	break;
 	case EInput::DEPOSIT:
@@ -93,9 +93,9 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cout << "계좌번호: ";
 		std::cin >> no;
 
-		for (int i = 0; i < handler->GetTotal(); ++i)
+		for (int i = 0; i < handler.GetTotal(); ++i)
 		{
-			if (handler->GetAccount(i)->GetNo() == no)
+			if (handler.GetAccount(i)->GetNo() == no)
 			{
 				while (1)
 				{
@@ -103,7 +103,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 					{
 						std::cout << "입금액: ";
 						std::cin >> money;
-						handler->DepositMoney(i, money);
+						handler.DepositMoney(i, money);
 						break;
 					}
 					catch (InputMoneyException& expn)
@@ -126,9 +126,9 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cout << "계좌번호: ";
 		std::cin >> no;
 
-		for (int i = 0; i < handler->GetTotal(); ++i)
+		for (int i = 0; i < handler.GetTotal(); ++i)
 		{
-			if (handler->GetAccount(i)->GetNo() == no)
+			if (handler.GetAccount(i)->GetNo() == no)
 			{
 				while (1)
 				{
@@ -136,7 +136,7 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 					{
 						std::cout << "출금액: ";
 						std::cin >> money;
-						handler->WithdrawMoney(i, money);
+						handler.WithdrawMoney(i, money);
 
 						std::cout << "출금완료" << std::endl;
 						break;
@@ -164,11 +164,11 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		std::cout << "계좌번호: ";
 		std::cin >> no;
 
-		for (int i = 0; i < handler->GetTotal(); ++i)
+		for (int i = 0; i < handler.GetTotal(); ++i)
 		{
-			if (handler->GetAccount(i)->GetNo() == no)
+			if (handler.GetAccount(i)->GetNo() == no)
 			{
-				handler->DeleteAccount(i);
+				handler.DeleteAccount(i);
 				std::cout << "해당 계좌가 삭제되었습니다." << std::endl;
 				return;
 			}
@@ -178,15 +178,15 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 		break;
 	case EInput::VIEWINFO:
 	{
-		if (handler->GetTotal() == 0)
+		if (handler.GetTotal() == 0)
 		{
 			std::cout << "저장된 계좌정보가 존재하지 않습니다." << std::endl;
 			return;
 		}
 
-		for (int i = 0; i < handler->GetTotal(); ++i)
+		for (int i = 0; i < handler.GetTotal(); ++i)
 		{
-			handler->ViewInfoAccounts(i); // 핸들러에서 처리하도록 수정
+			handler.ViewInfoAccounts(i); // 핸들러에서 처리하도록 수정
 		}
 	}
 		break;
@@ -209,4 +209,27 @@ void BankSystem::SelectMenu(AccountHandler* handler, EInput input)
 	}
 
 	std::cout << std::endl;
+}
+
+void BankSystem::PrintMenu()
+{
+	std::cout << "=Menu=" << std::endl;
+	std::cout << "1. 계좌개설" << std::endl;
+	std::cout << "2. 입 금" << std::endl;
+	std::cout << "3. 출 금" << std::endl;
+	std::cout << "4. 계좌삭제" << std::endl;
+	std::cout << "5. 계좌정보 전체 출력" << std::endl;
+	std::cout << "6. 저 장 (공사중)" << std::endl;
+	std::cout << "7. 불러오기 (공사중)" << std::endl;
+	std::cout << "8. 종 료" << std::endl;
+}
+
+EInput BankSystem::InputSelect()
+{
+	int input = 0;
+	std::cout << "선택: ";
+	std::cin >> input;
+	std::cout << std::endl;
+
+	return this->input = static_cast<EInput>(input);
 }

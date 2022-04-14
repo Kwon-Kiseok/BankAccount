@@ -38,19 +38,6 @@ AccountHandler::~AccountHandler()
 	}
 }
 
-void AccountHandler::PrintMenu()
-{
-	std::cout << "=Menu=" << std::endl;
-	std::cout << "1. 계좌개설" << std::endl;
-	std::cout << "2. 입 금" << std::endl;
-	std::cout << "3. 출 금" << std::endl;
-	std::cout << "4. 계좌삭제" << std::endl;
-	std::cout << "5. 계좌정보 전체 출력" << std::endl;
-	std::cout << "6. 저 장 (공사중)" << std::endl;
-	std::cout << "7. 불러오기 (공사중)" << std::endl;
-	std::cout << "8. 종 료" << std::endl;
-}
-
 void AccountHandler::DepositMoney(int idx, int money) throw(InputMoneyException)
 {
 	if (money < 0)
@@ -60,16 +47,6 @@ void AccountHandler::DepositMoney(int idx, int money) throw(InputMoneyException)
 	}
 
 	accounts[idx]->Deposit(money);
-}
-
-EInput AccountHandler::SelectMenu()
-{
-	int input = 0;
-	std::cout << "선택: ";
-	std::cin >> input;
-	std::cout << std::endl;
-
-	return (EInput)input;
 }
 
 void AccountHandler::WithdrawMoney(int idx, int money)

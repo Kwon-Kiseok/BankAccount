@@ -22,6 +22,9 @@ Account::~Account()
 Account& Account::operator=(const Account& ref)
 {
 	//mName.~string();
+	delete &mName;
+	mName = nullptr;
+
 	mName = my::string(ref.mName);
 	mNo = ref.mNo;
 	mMoney = ref.mMoney;
